@@ -11,6 +11,7 @@
 #include <cstring>
 #include <dirent.h>
 #include <memory>
+#include <stdexcept>
 #include <string>
 #include <sys/stat.h>
 #ifdef _MSC_VER
