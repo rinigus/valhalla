@@ -35,7 +35,7 @@ if (UNIX AND NOT APPLE)
     attributes_controller.cc
     triplegbuilder.cc
     worker.cc
-  PROPERTIES COMPILE_FLAGS "-Wall -Werror")
+  PROPERTIES COMPILE_FLAGS "-Wall")
 endif ()
 
 valhalla_module(NAME thor

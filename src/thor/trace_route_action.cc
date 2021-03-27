@@ -207,7 +207,7 @@ thor_worker_t::map_match(Api& request) {
     // here Note that we only support trace_route as OSRM format so best_paths == 1
     if (options.action() == Options::trace_route && options.format() == Options::osrm) {
       graph_tile_ptr tile = nullptr;
-      for (int i = 0; i < result.results.size(); ++i) {
+      for (size_t i = 0; i < result.results.size(); ++i) {
         // Get the match
         const auto& match = result.results[i];
         if (!match.edgeid.Is_Valid()) {
@@ -227,7 +227,7 @@ thor_worker_t::map_match(Api& request) {
         if (!match.HasState()) {
           continue;
         }
-        for (int j = 0;
+        for (size_t j = 0;
              j < matcher->state_container().state(match.stateid).candidate().edges.size() - 1; ++j) {
           options.mutable_shape(i)->mutable_path_edges()->Add();
         }
@@ -402,7 +402,7 @@ void thor_worker_t::build_route(
 
       // if we uturn onto this edge we must trim the beginning
       if (prev_segment && prev_segment->edgeid != segment->edgeid && prev_segment->target < 1.f &&
-          segment->first_match_idx > -1 && segment->first_match_idx < match_results.size()) {
+          segment->first_match_idx > -1 && (size_t)segment->first_match_idx < match_results.size()) {
         edge_trimming[i].first = {true, match_results[segment->first_match_idx].lnglat,
                                   segment->source};
       }
